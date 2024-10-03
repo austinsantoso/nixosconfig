@@ -7,8 +7,8 @@ local keymap = vim.keymap
 
 --Remap space as leader key
 -- keymap.set("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -37,7 +37,7 @@ keymap.set("n", "<a-right>", ":vertical resize -2<cr>", opts)
 keymap.set("n", "<a-left>", ":vertical resize +2<cr>", opts)
 
 -- navigate buffers
-keymap.set("n", "<tab>", "<cmd>tabnext<cr>", opts)       -- Next Tab
+keymap.set("n", "<tab>", "<cmd>tabnext<cr>", opts) -- Next Tab
 keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", opts) -- Previous tab
 
 -- search / highlight
@@ -70,6 +70,12 @@ keymap.set("n", "<a-k>", ":cprev<CR>", opts)
 -- cycle through jump list
 keymap.set("n", "<leader>i", "<C-i>", opts)
 keymap.set("n", "<leader>o", "<C-o>", opts)
+
+keymap.set("n", "<leader>Q", "<cmd>wqall!<CR>", { desc = "Quit", nowait = true, remap = false })
+keymap.set("n", "<leader>k", "<cmd>bdelete<CR>", { desc = "Kill Buffer", nowait = true, remap = false })
+keymap.set("n", "<leader>p", "<cmd>Lazy<CR>", { desc = "Plugin Manager", nowait = true, remap = false })
+keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = ":q", nowait = true, remap = false })
+keymap.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save", nowait = true, remap = false })
 
 -- keymap.set("v", "<a-j>", ":m .+1<cr>==", opts)
 -- keymap.set("v", "<a-k>", ":m .-2<cr>==", opts)

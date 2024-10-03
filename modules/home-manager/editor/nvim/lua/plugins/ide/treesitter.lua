@@ -17,3 +17,14 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+require('vim.treesitter.query').set(
+  'markdown',
+  'highlights',
+  [[
+;From MDeiml/tree-sitter-markdown
+[
+  (fenced_code_block_delimiter)
+] @punctuation.delimiter
+]]
+)

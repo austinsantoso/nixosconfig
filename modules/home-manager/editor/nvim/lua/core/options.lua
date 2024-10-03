@@ -48,7 +48,7 @@ opt.expandtab = true -- true = Use spaces instead of tabs
 opt.autoindent = true -- copy indent from current line when starting a new one
 opt.smarttab = true -- copy indent from current line when starting a new one
 
-opt.smartindent = true -- Insert indents automatically
+-- opt.smartindent = true -- Insert indents automatically
 
 opt.termguicolors = true -- True color support
 
