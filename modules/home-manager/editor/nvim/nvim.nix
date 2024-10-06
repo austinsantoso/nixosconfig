@@ -22,16 +22,17 @@
 
         vim.cmd.colorscheme('catppuccin-macchiato')
 
+        ${builtins.readFile ./lua/plugins/alpha.lua}
         ${builtins.readFile ./lua/plugins/bufferline.lua}
         ${builtins.readFile ./lua/plugins/dressing.lua}
         ${builtins.readFile ./lua/plugins/lualine.lua}
 
         ${builtins.readFile ./lua/plugins/telescope.lua}
         ${builtins.readFile ./lua/plugins/marks.lua}
+        ${builtins.readFile ./lua/plugins/indent-blankline.lua}
 
         -- IDE stuff
         ${builtins.readFile ./lua/plugins/ide/treesitter.lua}
-        ${builtins.readFile ./lua/plugins/ide/indent-blankline.lua}
         ${builtins.readFile ./lua/plugins/ide/nvim-cmp.lua}
         ${builtins.readFile ./lua/plugins/ide/lspinfo.lua}
         ${builtins.readFile ./lua/plugins/ide/linting.lua}
@@ -40,12 +41,16 @@
         ${builtins.readFile ./lua/plugins/nvim-tree.lua}
         ${builtins.readFile ./lua/plugins/whichkey.lua}
       '';
+      # ${builtins.readFile ./lua/plugins/ide/indent-blankline.lua}
 
       plugins = with pkgs.vimPlugins; [
         # Coloscheme
-        gruvbox-nvim
+        # gruvbox-nvim
         catppuccin-nvim
         vim-tmux-navigator
+
+        # greeter
+        alpha-nvim
 
         # icons
         nvim-web-devicons
@@ -72,6 +77,9 @@
               p.tree-sitter-json
               p.tree-sitter-go
               p.tree-sitter-templ
+              p.tree-sitter-regex
+              p.tree-sitter-markdown
+              p.tree-sitter-markdown-inline
             ])
           );
           config = "";
