@@ -27,7 +27,8 @@
   programs.lazygit.enable = true;
 
   home.packages = with pkgs; [
-    fzf-git-sh
+    # fzf-git-sh
+    simple-http-server
   ];
 
   # there are other ways to do this, but lets go with this
@@ -37,5 +38,4 @@
   '';
 
   programs.eza.enable = true;
-
 }

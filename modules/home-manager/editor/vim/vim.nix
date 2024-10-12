@@ -1,6 +1,22 @@
-{ pkgs, ... }:
 {
-	programs.vim.enable = true;	
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  options.austin.editor.vim = {
+    enable = lib.mkOption {
+      description = "enable VIM";
+      type = lib.types.bool;
+      default = true;
+    };
+  };
 
-	programs.vim.extraConfig = builtins.readFile ./config/.vimrc;
+  config = lib.mkIf config.austin.editor.vim.enable {
+    programs.vim.enable = true;
+    programs.vim.extraConfig = builtins.readFile ./config/.vimrc;
+
+    programs.vim.defaultEditor = true;
+  };
 }

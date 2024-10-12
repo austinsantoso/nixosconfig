@@ -1,106 +1,118 @@
-{ pkgs, ... }:
 {
-  programs.neovim =
-    let
-      toLua = str: "lua << EOF\n${str}\nEOF\n";
-      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-    in
-    {
-      enable = true;
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  options.austin.editor.nvim = {
+    enable = lib.mkEnableOption "enable NeoVIM (with plugins)";
+  };
 
-      extraPackages = with pkgs; [
-        lua-language-server
-        nil
-        stylua
-        jq
-        nixfmt-rfc-style
-      ];
+  config = lib.mkIf config.austin.editor.nvim.enable {
+    programs.neovim =
+      let
+        toLua = str: "lua << EOF\n${str}\nEOF\n";
+        toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+      in
+      {
+        enable = true;
 
-      extraLuaConfig = ''
-        ${builtins.readFile ./lua/core/options.lua}
-        ${builtins.readFile ./lua/core/keymaps.lua}
+        extraPackages = with pkgs; [
+          lua-language-server
+          nil
+          stylua
+          jq
+          nixfmt-rfc-style
+        ];
 
-        vim.cmd.colorscheme('catppuccin-macchiato')
+        extraLuaConfig = ''
+          ${builtins.readFile ./lua/core/options.lua}
+          ${builtins.readFile ./lua/core/keymaps.lua}
 
-        ${builtins.readFile ./lua/plugins/alpha.lua}
-        ${builtins.readFile ./lua/plugins/bufferline.lua}
-        ${builtins.readFile ./lua/plugins/dressing.lua}
-        ${builtins.readFile ./lua/plugins/lualine.lua}
+          vim.cmd.colorscheme('catppuccin-macchiato')
 
-        ${builtins.readFile ./lua/plugins/telescope.lua}
-        ${builtins.readFile ./lua/plugins/marks.lua}
-        ${builtins.readFile ./lua/plugins/indent-blankline.lua}
+          ${builtins.readFile ./lua/plugins/alpha.lua}
+          ${builtins.readFile ./lua/plugins/bufferline.lua}
+          ${builtins.readFile ./lua/plugins/dressing.lua}
+          ${builtins.readFile ./lua/plugins/lualine.lua}
 
-        -- IDE stuff
-        ${builtins.readFile ./lua/plugins/ide/treesitter.lua}
-        ${builtins.readFile ./lua/plugins/ide/nvim-cmp.lua}
-        ${builtins.readFile ./lua/plugins/ide/lspinfo.lua}
-        ${builtins.readFile ./lua/plugins/ide/linting.lua}
-        ${builtins.readFile ./lua/plugins/ide/formatting.lua}
+          ${builtins.readFile ./lua/plugins/telescope.lua}
+          ${builtins.readFile ./lua/plugins/marks.lua}
+          ${builtins.readFile ./lua/plugins/indent-blankline.lua}
 
-        ${builtins.readFile ./lua/plugins/nvim-tree.lua}
-        ${builtins.readFile ./lua/plugins/whichkey.lua}
-      '';
-      # ${builtins.readFile ./lua/plugins/ide/indent-blankline.lua}
+          -- IDE stuff
+          ${builtins.readFile ./lua/plugins/ide/treesitter.lua}
+          ${builtins.readFile ./lua/plugins/ide/nvim-cmp.lua}
+          ${builtins.readFile ./lua/plugins/ide/lspinfo.lua}
+          ${builtins.readFile ./lua/plugins/ide/linting.lua}
+          ${builtins.readFile ./lua/plugins/ide/formatting.lua}
 
-      plugins = with pkgs.vimPlugins; [
-        # Coloscheme
-        # gruvbox-nvim
-        catppuccin-nvim
-        vim-tmux-navigator
+          ${builtins.readFile ./lua/plugins/nvim-tree.lua}
+          ${builtins.readFile ./lua/plugins/whichkey.lua}
+        '';
+        # ${builtins.readFile ./lua/plugins/ide/indent-blankline.lua}
 
-        # greeter
-        alpha-nvim
+        plugins = with pkgs.vimPlugins; [
+          # Coloscheme
+          # gruvbox-nvim
+          catppuccin-nvim
+          vim-tmux-navigator
 
-        # icons
-        nvim-web-devicons
+          # greeter
+          alpha-nvim
 
-        bufferline-nvim
-        lualine-nvim
-        dressing-nvim
-        nvim-tree-lua
-        indent-blankline-nvim
+          # icons
+          nvim-web-devicons
 
-        marks-nvim
+          bufferline-nvim
+          lualine-nvim
+          dressing-nvim
+          nvim-tree-lua
+          indent-blankline-nvim
 
-        telescope-nvim
-        telescope-fzf-native-nvim
+          marks-nvim
 
-        # IDE stuff
-        {
-          plugin = (
-            nvim-treesitter.withPlugins (p: [
-              p.tree-sitter-nix
-              p.tree-sitter-vim
-              p.tree-sitter-bash
-              p.tree-sitter-lua
-              p.tree-sitter-json
-              p.tree-sitter-go
-              p.tree-sitter-templ
-              p.tree-sitter-regex
-              p.tree-sitter-markdown
-              p.tree-sitter-markdown-inline
-            ])
-          );
-          config = "";
-        }
-        rainbow-delimiters-nvim
+          telescope-nvim
+          telescope-fzf-native-nvim
 
-        # Completion
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-buffer
-        cmp-path
-        luasnip
-        cmp_luasnip
-        friendly-snippets
-        lspkind-nvim
-        nvim-lspconfig
-        nvim-lint
-        conform-nvim
+          # IDE stuff
+          {
+            plugin = (
+              nvim-treesitter.withPlugins (p: [
+                p.tree-sitter-nix
+                p.tree-sitter-vim
+                p.tree-sitter-bash
+                p.tree-sitter-lua
+                p.tree-sitter-json
+                p.tree-sitter-go
+                p.tree-sitter-templ
+                p.tree-sitter-regex
+                p.tree-sitter-markdown
+                p.tree-sitter-markdown-inline
+                p.tree-sitter-yaml
+              ])
+            );
+            config = "";
+          }
+          rainbow-delimiters-nvim
 
-        vim-tmux-navigator
-        which-key-nvim
-      ];
-    };
+          # Completion
+          nvim-cmp
+          cmp-nvim-lsp
+          cmp-buffer
+          cmp-path
+          luasnip
+          cmp_luasnip
+          friendly-snippets
+          lspkind-nvim
+          nvim-lspconfig
+          nvim-lint
+          conform-nvim
+
+          vim-tmux-navigator
+          which-key-nvim
+        ];
+      };
+  };
 }
