@@ -12,6 +12,9 @@
       interactive = {
         # diffFilter = "delta --color-only"; # setup by programs.gitdelta.enable = true;
       };
+      init = {
+        defaultBranch = "main";
+      };
       delta = {
         navigate = true; # use n and N to move between diff sections
         side-by-side = true;
