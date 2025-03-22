@@ -5,6 +5,9 @@
   # programs.tmux.extraConfig = builtins.readFile ./default.conf + builtins.readFile ./tmux.conf;
   programs.tmux.extraConfig = builtins.readFile ./default.conf + builtins.readFile ./plugin.conf;
 
+  # default to ZSH
+  programs.tmux.shell = "${pkgs.zsh}/bin/zsh";
+
   programs.tmux.plugins = with pkgs; [
     {
       plugin = tmuxPlugins.catppuccin;
@@ -29,18 +32,6 @@
       '';
     }
     tmuxPlugins.vim-tmux-navigator
-    {
-      plugin = tmuxPlugins.resurrect;
-      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-    }
-    {
-      plugin = tmuxPlugins.continuum;
-      extraConfig = ''
-        set -g @continuum-restore 'on'
-        set -g @continuum-save-interval '300' # 5 minutes
-      '';
-    }
     tmuxPlugins.tmux-fzf
   ];
-
 }

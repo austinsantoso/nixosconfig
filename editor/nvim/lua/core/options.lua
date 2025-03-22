@@ -63,7 +63,7 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
-opt.wrap = false -- Disable line wrap
+opt.wrap = true -- Enable line wrap
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

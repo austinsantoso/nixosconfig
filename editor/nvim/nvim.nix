@@ -19,11 +19,26 @@
         enable = true;
 
         extraPackages = with pkgs; [
+          # setup nix
+          nixd
+          nixfmt-rfc-style
+
+          # setup python
+          python313Packages.python-lsp-server
+          python314
+          pylint
+
+          # setup go
+          gopls
+          golangci-lint
+
+          # setup typescript
+          eslint_d
+
+          # misceleneous
           lua-language-server
-          nil
           stylua
           jq
-          nixfmt-rfc-style
         ];
 
         extraLuaConfig = ''
