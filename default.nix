@@ -10,6 +10,14 @@
 
   home.packages = with pkgs; [
     ripgrep
-    google-cloud-sdk
+    jq
+
+    # nerd font of choice
+    # pkgs.nerd-fonts.jetbrains-mono
+
+    # Commonly used programming language
+    python314
+    go
+    nodejs_23
   ];
 }
