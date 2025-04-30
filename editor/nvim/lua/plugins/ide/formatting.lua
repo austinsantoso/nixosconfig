@@ -4,6 +4,10 @@ require("conform").setup({
 		go = { "gofmt" },
 		nix = { "nixfmt" },
 		json = { "jq" },
+		typescript = { "prettierd" },
+		javascript = { "prettierd" },
+		typescriptreact = { "prettierd" },
+		javascriptreact = { "prettierd" },
 	},
 	format_on_save = {
 		lsp_fallback = true,

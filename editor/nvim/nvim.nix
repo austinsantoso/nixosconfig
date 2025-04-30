@@ -33,7 +33,10 @@
           golangci-lint
 
           # setup typescript
+          typescript-language-server
           eslint_d
+          # nodePackages.prettier
+          prettierd
 
           # misceleneous
           lua-language-server
@@ -106,6 +109,8 @@
                 p.tree-sitter-markdown
                 p.tree-sitter-markdown-inline
                 p.tree-sitter-yaml
+                p.tree-sitter-javascript
+                p.tree-sitter-typescript
               ])
             );
             config = "";
