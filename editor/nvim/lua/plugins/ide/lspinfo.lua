@@ -138,6 +138,11 @@ local f = function()
 		on_attach = on_attach,
 	})
 
+	lspconfig["ts_ls"].setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+	})
+
 	lspconfig["pylsp"].setup({
 		settings = {
 			pylsp = {
