@@ -2,6 +2,10 @@
 
 This repo contains my home manager config.
 
+## NixOS Setup
+[NixOS Setup](./docs/nixos.md) setups home manager as a module in a flake.
+This setup is specific to what is working for me.
+
 ## Setup
 Current use case is to setup home manager in a new system.
 Install Home manager with nix flake as a stand alone [guide](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone).
@@ -22,8 +26,10 @@ Add the following line
 
   programs.git = {
     enable = true;
-    userName = "your username";
-    userEmail = "your email";
+    settings {
+      user.name = "your username";
+      user.email = "your email";
+    };
   };
 
   imports = [
