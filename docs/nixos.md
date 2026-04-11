@@ -47,6 +47,8 @@ We need to add home-manager as a module in our `configuration.nix`
   };
 ```
 
+You also need to generate a `home.nix` file.
+
 > It should just work how I remembered it
 > 
 > My expectation of nix
