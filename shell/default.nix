@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./bash/default.nix
+    # ./bash/default.nix
     ./zsh/default.nix
   ];
 }

@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       core = {
         editor = "vim";
         # pager = "delta"; # setup by programs.gitdelta.enable = true;
@@ -28,6 +28,6 @@
       };
     };
 
-    delta.enable = true;
+    # delta.enable = true;
   };
 }

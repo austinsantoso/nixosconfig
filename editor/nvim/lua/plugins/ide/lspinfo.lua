@@ -107,13 +107,23 @@ local f = function()
 
 	lspconfig["nixd"].setup({
 		cmd = { "nixd" },
+		on_attach = on_attach,
 		settings = {
 			nixd = {
 				nixpkgs = {
 					expr = "import <nixpkgs> { }",
+					-- expr = 'import (builtins.getFlake "/home/austin/mysystem/").inputs.nixpkgs { }',
 				},
 				formatting = {
 					command = { "nixfmt" },
+				},
+				options = {
+					-- nixos = {
+					-- expr = '(builtins.getFlake "/home/austin/mysystem").nixosConfigurations.nixos.options',
+					-- },
+					-- ["home-manager"] = {
+					-- expr = '(builtins.getFlake "/home/austin/mysystem").homeConfigurations."austin".options',
+					-- },
 				},
 			},
 		},

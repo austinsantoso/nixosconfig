@@ -16,8 +16,7 @@
     # pkgs.nerd-fonts.jetbrains-mono
 
     # Commonly used programming language
-    python314
+    python315
     go
-    nodejs_23
   ];
 }

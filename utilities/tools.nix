@@ -33,7 +33,7 @@
 
   # there are other ways to do this, but lets go with this
   # some other ways I want to try is to make this a flake, and source it from there
-  programs.zsh.initExtra = lib.mkAfter ''
+  programs.zsh.initContent = lib.mkAfter ''
     source "${pkgs.fzf-git-sh}/share/fzf-git-sh/fzf-git.sh"
   '';
 

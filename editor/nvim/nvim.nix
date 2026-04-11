@@ -21,11 +21,11 @@
         extraPackages = with pkgs; [
           # setup nix
           nixd
-          nixfmt-rfc-style
+          nixfmt
 
           # setup python
-          python313Packages.python-lsp-server
-          python314
+          # python313Packages.python-lsp-server
+          # python314
           pylint
 
           # setup go
@@ -33,8 +33,8 @@
           golangci-lint
 
           # setup typescript
-          typescript-language-server
-          eslint_d
+          # typescript-language-server
+          # eslint_d
           # nodePackages.prettier
           prettierd
 
@@ -44,7 +44,8 @@
           jq
         ];
 
-        extraLuaConfig = ''
+        # ${builtins.readFile ./lua/plugins/ide/treesitter.lua}
+        initLua = ''
           ${builtins.readFile ./lua/core/options.lua}
           ${builtins.readFile ./lua/core/keymaps.lua}
 
@@ -60,7 +61,6 @@
           ${builtins.readFile ./lua/plugins/indent-blankline.lua}
 
           -- IDE stuff
-          ${builtins.readFile ./lua/plugins/ide/treesitter.lua}
           ${builtins.readFile ./lua/plugins/ide/nvim-cmp.lua}
           ${builtins.readFile ./lua/plugins/ide/lspinfo.lua}
           ${builtins.readFile ./lua/plugins/ide/linting.lua}
@@ -95,26 +95,26 @@
           telescope-fzf-native-nvim
 
           # IDE stuff
-          {
-            plugin = (
-              nvim-treesitter.withPlugins (p: [
-                p.tree-sitter-nix
-                p.tree-sitter-vim
-                p.tree-sitter-bash
-                p.tree-sitter-lua
-                p.tree-sitter-json
-                p.tree-sitter-go
-                p.tree-sitter-templ
-                p.tree-sitter-regex
-                p.tree-sitter-markdown
-                p.tree-sitter-markdown-inline
-                p.tree-sitter-yaml
-                p.tree-sitter-javascript
-                p.tree-sitter-typescript
-              ])
-            );
-            config = "";
-          }
+          # {
+          #   plugin = (
+          #     nvim-treesitter.withPlugins (p: [
+          #       p.tree-sitter-nix
+          #       p.tree-sitter-vim
+          #       p.tree-sitter-bash
+          #       p.tree-sitter-lua
+          #       p.tree-sitter-json
+          #       p.tree-sitter-go
+          #       p.tree-sitter-templ
+          #       p.tree-sitter-regex
+          #       p.tree-sitter-markdown
+          #       p.tree-sitter-markdown-inline
+          #       p.tree-sitter-yaml
+          #       p.tree-sitter-javascript
+          #       p.tree-sitter-typescript
+          #     ])
+          #   );
+          #   config = "";
+          # }
           rainbow-delimiters-nvim
 
           # Completion
@@ -133,6 +133,9 @@
           vim-tmux-navigator
           which-key-nvim
         ];
+
+        withRuby = false;
+        withPython3 = false;
       };
   };
 }
