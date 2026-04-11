@@ -1,7 +1,4 @@
 local f = function()
-	-- import lspconfig plugin
-	local lspconfig = require("lspconfig")
-
 	-- import cmp-nvim-lsp plugin
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -85,7 +82,7 @@ local f = function()
 	end
 
 	-- configure lua server (with special settings)
-	lspconfig["lua_ls"].setup({
+	vim.lsp.config("lua_ls", {
 		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = { -- custom settings for lua
@@ -105,55 +102,41 @@ local f = function()
 		},
 	})
 
-	lspconfig["nixd"].setup({
+	vim.lsp.config("nixd", {
 		cmd = { "nixd" },
 		on_attach = on_attach,
 		settings = {
 			nixd = {
 				nixpkgs = {
 					expr = "import <nixpkgs> { }",
-					-- expr = 'import (builtins.getFlake "/home/austin/mysystem/").inputs.nixpkgs { }',
+					expr = 'import (builtins.getFlake "/home/austin/mysystem/").inputs.nixpkgs { }',
 				},
 				formatting = {
 					command = { "nixfmt" },
 				},
 				options = {
-					-- nixos = {
-					-- expr = '(builtins.getFlake "/home/austin/mysystem").nixosConfigurations.nixos.options',
-					-- },
-					-- ["home-manager"] = {
-					-- expr = '(builtins.getFlake "/home/austin/mysystem").homeConfigurations."austin".options',
-					-- },
+					nixos = {
+						expr = '(builtins.getFlake "/home/austin/mysystem").nixosConfigurations.nixos.options',
+					},
+					["home-manager"] = {
+						expr = '(builtins.getFlake "/home/austin/mysystem").homeConfigurations."austin".options',
+					},
 				},
 			},
 		},
 	})
 
-	--lspconfig["nil"].setup({
-	--	capabilities = capabilities,
-	--	on_attach = on_attach,
-	--	cmd = { nil },
-	--	settings = {
-	--		["nil"] = {
-	--			testSettign = 42,
-	--			formatting = {
-	--				command = { "nixfmt" },
-	--			},
-	--		},
-	--	},
-	--})
-
-	lspconfig["gopls"].setup({
+	vim.lsp.config("gopls", {
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
 
-	lspconfig["ts_ls"].setup({
+	vim.lsp.config("ts_ls", {
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
 
-	lspconfig["pylsp"].setup({
+	vim.lsp.config("pylsp", {
 		settings = {
 			pylsp = {
 				plugins = {
@@ -166,7 +149,7 @@ local f = function()
 		},
 	})
 
-	lspconfig.templ.setup({})
+	vim.lsp.enable({ "templ" })
 end
 
 f()
