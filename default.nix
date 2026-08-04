@@ -6,6 +6,7 @@
     # ./git.nix
     # ./utilities/default.nix
     # ./shell/default.nix
+    ./hyprland/default.nix
   ];
 
   home.packages = with pkgs; [
