@@ -2,10 +2,10 @@
 {
   imports = [
     ./editor/default.nix
-    ./tmux/default.nix
-    ./git.nix
-    ./utilities/default.nix
-    ./shell/default.nix
+    # ./tmux/default.nix
+    # ./git.nix
+    # ./utilities/default.nix
+    # ./shell/default.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,7 +16,7 @@
     # pkgs.nerd-fonts.jetbrains-mono
 
     # Commonly used programming language
-    python315
+    python3
     go
   ];
 }
