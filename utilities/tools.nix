@@ -12,15 +12,15 @@
 
   # When pressing alt-c will list folders to cd into
   # use EZA to preview file tree in that directory
-  programs.fzf.changeDirWidgetCommand = "fd --type d --hidden --exclude .git --strip-cwd-prefix";
-  programs.fzf.changeDirWidgetOptions = [
+  programs.fzf.changeDirWidget.command = "fd --type d --hidden --exclude .git --strip-cwd-prefix";
+  programs.fzf.changeDirWidget.options = [
     "--preview 'eza --tree --color=always {} | head -200'"
   ];
 
   # When pressing alt-y will list all possibilities
   # use `bat` when it is a file, use `eza` if directory to show file tree
-  programs.fzf.fileWidgetCommand = "fd --hidden --exclude .git --strip-cwd-prefix";
-  programs.fzf.fileWidgetOptions = [
+  programs.fzf.fileWidget.command = "fd --hidden --exclude .git --strip-cwd-prefix";
+  programs.fzf.fileWidget.options = [
     "--preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi'"
   ];
 
@@ -28,7 +28,7 @@
 
   home.packages = with pkgs; [
     # fzf-git-sh
-    simple-http-server
+    # simple-http-server
   ];
 
   # there are other ways to do this, but lets go with this

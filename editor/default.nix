@@ -10,5 +10,5 @@
     # ./nvim/nvim.nix
   ];
 
-  austin.editor.nvim.enable = true;
+  # austin.editor.nvim.enable = true;
 }
