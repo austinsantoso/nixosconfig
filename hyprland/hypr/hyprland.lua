@@ -32,7 +32,7 @@
 
 hl.monitor({
     output   = "",
-    mode     = "3440x1440@30",
+    mode     = "3440x1440@50",
     position = "0x0",
     scale    = "1",
 })

@@ -23,6 +23,8 @@
     # Commonly used programming language
     python3
     go
+    btop
+    htop
   ];
 
   home.pointerCursor = {

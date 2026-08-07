@@ -7,7 +7,7 @@
 {
   imports = [
     ./vim/vim.nix
-    # ./nvim/nvim.nix
+    ./nvim/default.nix
   ];
 
   # austin.editor.nvim.enable = true;

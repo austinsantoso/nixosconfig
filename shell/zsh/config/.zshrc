@@ -10,7 +10,6 @@ fastfetch
 # Posted by anon, modified by community. See post 'Timeline' for change history␍
 # Retrieved 2026-08-06, License - CC BY-SA 2.5␍
 # ctrl-x ctrl-e to edit commad in vim
-␍
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
