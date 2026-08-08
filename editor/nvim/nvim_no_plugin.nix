@@ -9,6 +9,7 @@
     enable = true;
     sideloadInitLua = true;
   };
+  home.file.".config/nvim".source = ./no_plugin;
 
   home.packages = with pkgs; [
     # golang
