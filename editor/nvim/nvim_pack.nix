@@ -24,6 +24,12 @@
   # home.file.".config/nvim/init.lua".source = ./nvim_pack/init.lua;
   # home.file.".config/nvim/lua".source = ./nvim_pack/lua;
 
+  xdg.configFile = {
+    "nvim/init.lua".enable = lib.mkForce false;
+    "nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-configuration/modules/personal/editor/nvim/nvim_pack";
+  };
+
   # Manually install rather than MASON
   home.packages = with pkgs; [
     # golang
