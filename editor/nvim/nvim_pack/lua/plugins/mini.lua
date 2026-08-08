@@ -10,17 +10,16 @@ require("mini.surround").setup()
 -- | `sn` | Update n_lines |
 -- | `l` / `n` | as suffix for prev/next |
 
-
 -- mini completion ----------------
 require("mini.completion").setup({
-    lsp_completion = {
-        auto_setup = true,
-    }
+	lsp_completion = {
+		auto_setup = true,
+	},
 })
--- disable completion in snacks.picker
+-- disable completion in snacks.picker or snacks input fields
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "snacks_picker_input",
-  callback = function()
-    vim.b.minicompletion_disable = true
-  end,
+	pattern = { "snacks_picker_input", "snacks_input" },
+	callback = function()
+		vim.b.minicompletion_disable = true
+	end,
 })

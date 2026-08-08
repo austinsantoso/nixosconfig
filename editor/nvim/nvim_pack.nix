@@ -8,10 +8,23 @@
   programs.neovim = {
     enable = true;
     sideloadInitLua = true;
+
+    # Plugins are managed by vim.pack
+    # could not be bothered to do everything the nix way
+    # dependencies of tree-sitter
+    extraPackages = with pkgs; [
+      # Tree-sitter CLI (grammars provided by withAllGrammars plugin)
+      tree-sitter
+      gcc
+    ];
   };
+
+  # Considering to use mkOutOfStoreSymlink https://github.com/calops/nix/blob/df50d100021894151fae164242e16d48915cbae9/modules/programs/neovim/default.nix#L100
+  #
   # home.file.".config/nvim/init.lua".source = ./nvim_pack/init.lua;
   # home.file.".config/nvim/lua".source = ./nvim_pack/lua;
 
+  # Manually install rather than MASON
   home.packages = with pkgs; [
     # golang
     go
