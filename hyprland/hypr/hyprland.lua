@@ -44,6 +44,8 @@ local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "hyprlauncher"
 
+local screenshotDir = "~/Screenshots"
+
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -59,6 +61,10 @@ hl.on("hyprland.start", function()
 	--   hl.exec_cmd("waybar & hyprpaper & firefox")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("hyprlauncher -d")
+
+	-- https://wiki.hypr.land/Useful-Utilities/Clipboard-Managers/
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 	-- 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 24")
 end)
 
@@ -274,8 +280,11 @@ hl.bind(
 	mainMod .. " + SHIFT + M",
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
+
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
+
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("togglesplit")) -- dwindle only
@@ -290,6 +299,28 @@ hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+
+-- Screenshots
+-- MacOS style conflicts with window management
+-- Windows style
+hl.bind(
+	mainMod .. " + S",
+	hl.dsp.exec_cmd('grim -g "$(slurp -d)" ' .. screenshotDir .. "/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png")
+)
+hl.bind(
+	mainMod .. " + SHIFT + S",
+	hl.dsp.exec_cmd("grim " .. screenshotDir .. "/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png")
+)
+
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("grim - | wl-copy"))
+
+hl.bind(
+	mainMod .. " + V",
+	hl.dsp.exec_cmd(
+		"cliphist list | wofi --dmenu --pre-display-cmd \"echo '%s' | cut -f 2\" | cliphist decode | wl-copy"
+	)
+)
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

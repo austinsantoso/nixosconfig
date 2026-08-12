@@ -11,7 +11,11 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim", -- MAYBE migrate to mini
 
 	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/mfussenegger/nvim-lint", -- linter
 	"https://github.com/stevearc/conform.nvim",
+
+	"https://github.com/saghen/blink.lib",
+	"https://github.com/saghen/blink.cmp",
 })
 
 require("plugins.bufferline")
@@ -22,5 +26,7 @@ require("plugins.snacks")
 require("plugins.mini")
 require("plugins.treesitter")
 
+require("plugins.formatter")
+require("plugins.linter")
 require("plugins.lsp")
-require("plugins.conform")
+require("plugins.completion")

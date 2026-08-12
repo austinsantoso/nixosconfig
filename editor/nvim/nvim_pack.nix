@@ -16,6 +16,8 @@
       # Tree-sitter CLI (grammars provided by withAllGrammars plugin)
       tree-sitter
       gcc
+      cargo # to build blink
+      rustc # to build blink
     ];
   };
 

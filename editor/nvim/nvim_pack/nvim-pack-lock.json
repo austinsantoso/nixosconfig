@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "8ca29c2eb34f5ce4770bffc0d62e6f636a4e8526",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "blink.lib": {
+      "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
+      "src": "https://github.com/saghen/blink.lib"
+    },
     "bufferline.nvim": {
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
@@ -19,6 +27,10 @@
     "mini.nvim": {
       "rev": "629bf6792187e11b4829411c1648f86f28df3963",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nvim-lint": {
+      "rev": "a219b2c9e5b4765e5c845aba119dad55806fcaf1",
+      "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
       "rev": "43ed3797b266e1ee8d222e491379ad471c9d3146",
